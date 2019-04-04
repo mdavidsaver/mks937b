@@ -17,13 +17,11 @@ USR_CXXFLAGS_DEFAULT += -pedantic
 # build a mks937b library
 #
 
-LIBRARY_IOC_vxWorks += mks937b
+LIBRARY_IOC += mks937b
 
 # install support.dbd into <top>/dbd
 DBD += mks937b.dbd
 
-mks937b_DBD += base.dbd
-#mks937b_DBD += genSubRecord.dbd
 mks937b_DBD += mks937bRegister.dbd
 
 # specify all source files to be compiled and added to the library

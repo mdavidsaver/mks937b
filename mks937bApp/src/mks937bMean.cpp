@@ -10,8 +10,6 @@
 *
 */
 
-#include <vxWorks.h>
-#include <types.h>
 #include <aSubRecord.h>
 #include <epicsExport.h>
 #include <registryFunction.h>
@@ -58,7 +56,6 @@ long mks937aMeanCalc (struct aSubRecord *psub)
     double mean     = 0.0;          /* mean pressure       (output -> VALB)   */
     double pmax     = P_MIN;        /* maximum pressure    (output -> VALC)   */
     double pmin     = P_MAX;        /* mimimum pressure    (output -> VALD)   */
-    double deadband = 0.0;          /* archive deadband    (output -> VALB)   */
     double p[10];                   /* input pressure      (input  <- INPB-K) */
     double s[10];                   /* input status        (input  <- INPL-U) */
 
@@ -104,7 +101,6 @@ long mks937aMeanCalc (struct aSubRecord *psub)
     if (nGood > 0)
     	{
         mean = sum / (double) nGood;
-        deadband = mean / 20.0; 
         status = (nGood == nImgs) ? STA_OK : STA_OK1;
     	}
 
