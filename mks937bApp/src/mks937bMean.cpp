@@ -21,16 +21,16 @@
 #define P_MAX        (1.01e-3)
 
 /*******************************************************************************
-* mks937aMeanInit
+* mks937bMeanInit
 * Initialisation function - Does nothing
 */
-long mks937aMeanInit (struct aSubRecord *psub)
+long mks937bMeanInit (struct aSubRecord *psub)
 	{
     return 0;
 	}
 
 /*******************************************************************************
-* mks937aMeanCalc
+* mks937bMeanCalc
 * calculate the mean pressure from up to IMGs
 * Only include IMGs where the status is OK (0 or 1)
 *
@@ -46,7 +46,7 @@ long mks937aMeanInit (struct aSubRecord *psub)
 *
 * Return: number of contributing gauges
 */
-long mks937aMeanCalc (struct aSubRecord *psub)
+long mks937bMeanCalc (struct aSubRecord *psub)
 	{
     long   n        = 0;            /* counter                                */
     long   status   = STA_NO_GAUGE; /* output status       (output -> VALA)   */
@@ -120,9 +120,7 @@ long mks937aMeanCalc (struct aSubRecord *psub)
 /*******************************************************************************
 */
 
-/* Only register functions in R3.14 */
-#ifdef EPICS_R3_14
-epicsRegisterFunction(mks937aMeanInit);
-epicsRegisterFunction(mks937aMeanCalc);
-#endif
-
+extern "C" {
+epicsRegisterFunction(mks937bMeanInit);
+epicsRegisterFunction(mks937bMeanCalc);
+}
